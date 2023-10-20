@@ -1,0 +1,252 @@
+import React, { useState} from 'react';
+import {Link} from 'react-router-dom'
+import pict from './pict/Iphone12.png'
+import './App.css'
+
+export default function Customer () {
+    const [products, setProducts] = useState([{name: 'IPhone1', cat: 'Electronic', sub_cat: 'Phone', price: 5, description: "It is a phone", date_added: '11/08/2023', quantity: 10, picture: pict},
+                    {name: 'IPhone2', cat: 'Electronic', sub_cat: 'Phone', price: 74, description: "It is a phone", date_added: '29/11/2023', quantity: 10, picture: pict},
+                    {name: 'IPhone3', cat: 'Electronic', sub_cat: 'Phone', price: 13, description: "It is a phone", date_added: '18/10/2023', quantity: 10, picture: pict},
+                    {name: 'IPhone4', cat: 'Electronic', sub_cat: 'Phone', price: 55, description: "It is a phone", date_added: '03/06/2023', quantity: 10, picture: pict},
+                    {name: 'IPhone5', cat: 'Electronic', sub_cat: 'Phone', price: 12, description: "It is a phone", date_added: '10/03/2023', quantity: 10, picture: pict},
+                    {name: 'IPhone6', cat: 'Food', sub_cat: 'Phone', price: 80, description: "It is a phone", date_added: '17/11/2023', quantity: 10, picture: pict},
+                    {name: 'IPhone7', cat: 'Food', sub_cat: 'Phone', price: 15, description: "It is a phone", date_added: '19/07/2023', quantity: 10, picture: pict},
+                    {name: 'IPhone8', cat: 'Food', sub_cat: 'Phone', price: 26, description: "It is a phone", date_added: '20/10/2023', quantity: 10, picture: pict},
+                    {name: 'IPhone9', cat: 'Food', sub_cat: 'Phone', price: 35, description: "It is a phone", date_added: '09/04/2023', quantity: 10, picture: pict},
+                    {name: 'IPhone10', cat: 'Food', sub_cat: 'Phone', price: 75, description: "It is a phone", date_added: '18/10/2023', quantity: 10, picture: pict},
+                    {name: 'IPhone11', cat: 'Sport', sub_cat: 'Phone', price: 84, description: "It is a phone", date_added: '13/03/2023', quantity: 10, picture: pict},
+                    {name: 'IPhone12', cat: 'Sport', sub_cat: 'Phone', price: 93, description: "It is a phone", date_added: '25/04/2023', quantity: 10, picture: pict},
+                    {name: 'IPhone13', cat: 'Sport', sub_cat: 'Phone', price: 92, description: "It is a phone", date_added: '28/05/2023', quantity: 10, picture: pict},
+                    {name: 'IPhone14', cat: 'Sport', sub_cat: 'Phone', price: 872, description: "It is a phone", date_added: '12/12/2023', quantity: 10, picture: pict},
+                    {name: 'IPhone15', cat: 'Sport', sub_cat: 'Phone', price: 104, description: "It is a phone", date_added: '20/02/2023', quantity: 10, picture: pict},
+                    {name: 'IPhone16', cat: 'Construction', sub_cat: 'Phone', price: 756, description: "It is a phone", date_added: '17/01/2023', quantity: 10, picture: pict},
+                    {name: 'IPhone17', cat: 'Construction', sub_cat: 'Phone', price: 52, description: "It is a phone", date_added: '22/04/2023', quantity: 10, picture: pict},
+                    {name: 'IPhone18', cat: 'Construction', sub_cat: 'Phone', price: 65, description: "It is a phone", date_added: '21/12/2023', quantity: 10, picture: pict},
+                    {name: 'IPhone19', cat: 'Construction', sub_cat: 'Phone', price: 81, description: "It is a phone", date_added: '19/11/2023', quantity: 10, picture: pict},
+                    {name: 'IPhone20', cat: 'Construction', sub_cat: 'Phone', price: 12, description: "It is a phone", date_added: '09/12/2023', quantity: 10, picture: pict},])
+
+    /* Const for product tampering */
+    const [original, setOriginal] = useState(products)
+    const [selectedValue, setSelectedValue] = useState('All');
+    const [sortByPrice, setSortByPrice] = useState(false);
+    const [sortByDate, setSortByDate] = useState(false);
+    const [searchByName, setSearchByName] = useState('');
+
+    /* Const for update list */
+    const [name, setName] = useState('');
+    const [des, setDes] = useState('');
+    const [price, setPrice] = useState('');
+    const [date, setDate] = useState('');
+    const [quantity, setQuantity] = useState('');
+    const [selectedValueforUpdate, setSelectedValueforUpdate] = useState('');
+
+    const filterPrice = (event) => {
+        const isChecked = event.target.checked;
+        setSortByPrice(isChecked);
+        if (isChecked) {
+            const sortedProducts = [...original].sort((a, b) => b.price - a.price);
+            setOriginal(sortedProducts);
+        } else {
+            // Return to the original filtered state before sorting
+            if (selectedValue === "All") {
+                setOriginal(products);
+            } else {
+                const filteredProducts = products.filter(product => product.cat === selectedValue);
+                setOriginal(filteredProducts);
+            }
+        }
+    }
+
+    const filterDate = (event) => {
+        const isChecked = event.target.checked;
+        setSortByDate(isChecked);
+
+        if (isChecked) {
+            const sortedProducts = [...original].sort((a, b) => {
+                const [dayA, monthA, yearA] = a.date_added.split('/');
+                const [dayB, monthB, yearB] = b.date_added.split('/');
+                const dateA = new Date(Number(yearA), Number(monthA) - 1, Number(dayA));
+                const dateB = new Date(Number(yearB), Number(monthB) - 1, Number(dayB));
+                return dateA - dateB;
+            });
+            setOriginal(sortedProducts);
+        } else {
+            // Return to the original filtered state before sorting
+            if (selectedValue === "All") {
+                setOriginal(products);
+            } else {
+                const filteredProducts = products.filter(product => product.cat === selectedValue);
+                setOriginal(filteredProducts);
+            }
+        }
+        console.log('date')
+    }
+
+    const searchName = (event) => {
+        setSearchByName(event.target.value);
+    }
+    const findName = () => {
+        const findPro = [...products].filter(product => product.name === searchByName);
+        setOriginal(findPro);
+    }
+
+    // npm install --save react-dropdown-select
+    const options = [
+        {value:  'Electronic', label: "Electronic"},
+        {value:  'Food', label: "Food"},
+        {value:  'Sport', label: "Sport"},
+        {value:  'Construction', label: "Construction"}
+    ];
+    const handleValueChange = (event) => {
+        const newValue = event.target.value;
+        setSelectedValue(newValue);
+        if (newValue === "All"){
+            setOriginal(products);
+        } else {
+            const filteredProducts = products.filter(product => product.cat === newValue);
+            setOriginal(filteredProducts);
+        }
+    };
+    const printOptions = () => {
+        return(
+            <select value={selectedValue} onChange={handleValueChange}>
+            <option value="All">All</option>
+            {options.map((option) => (
+            <option key={option.value} value={option.value}>
+                {option.label}
+            </option>
+            ))}
+            </select>
+        )
+    }
+
+    /* Update list */
+    const inputName = (event) =>{
+        setName(event.target.value);
+    }
+    const inputDes = (event) =>{
+        setDes(event.target.value);
+    }
+    const inputPrice = (event) =>{
+        setPrice(event.target.value);
+    }
+    const inputDate = (event) =>{
+        setDate(event.target.value);
+    }
+    const inputQuan = (event) =>{
+        setQuantity(event.target.value);
+    }
+
+    const printOptionsforUpdate = () => {
+        return(
+            <select value={selectedValueforUpdate} onChange={handleValueChangeforUpdate}>
+            <option value="">Choose category</option>
+            {options.map((option) => (
+            <option key={option.value} value={option.value}>
+                {option.label}
+            </option>
+            ))}
+            </select>
+        )
+    }
+
+    const handleValueChangeforUpdate = (event) => {
+        const newValue = event.target.value;
+        setSelectedValueforUpdate(newValue);
+    };
+
+    const addItem = () => {
+        const newItem = {
+            name: name,
+            cat: selectedValueforUpdate,
+            sub_cat: 'Phone',
+            price: price,
+            description: des,
+            date_added: date,
+            quantity: quantity,
+            picture: pict
+        };
+        
+        // Update the products state immediately
+        setProducts([...products, newItem]);
+        setOriginal([...original, newItem]);
+
+        // Clear the input fields
+        setName("");
+        setDes("");
+        setPrice("");
+        setDate("");
+        setQuantity("");
+        setSelectedValueforUpdate("")
+    }
+
+    const deleteItem = (item) => {
+        setProducts(products.filter(pro => pro.name !== item));
+        setOriginal(original.filter(ori => ori.name !== item));
+    }
+
+    return(
+        <div>
+        <div className='display'>
+            <div className='filterFunctions'>
+                <div>{printOptions()}</div>
+                <label>Price</label>
+                <input type="checkbox" checked={sortByPrice} onChange={filterPrice} />
+                <label>Date</label>
+                <input type="checkbox" checked={sortByDate} onChange={filterDate} />
+                <div>
+                    <label>Search by name</label>
+                    <input type='text' value={searchByName} onChange={searchName} />
+                    <button onClick={findName}>Find</button>
+                </div>
+
+            </div>
+            <div className='tab'>
+            {original.map((ori) => (
+                <div className='info'>
+                    <img src={ori.picture} /> 
+                    <div>{ori.name}</div> 
+                    <div>{ori.cat}</div> 
+                    <div>{ori.sub_cat}</div> 
+                    <div>{ori.price}</div> 
+                    <div>{ori.description}</div> 
+                    <div>{ori.date_added}</div> 
+                    <div>{ori.quantity}</div>
+                    <button onClick={() => deleteItem(ori.name)}>Delete</button>
+                </div>
+            ))}
+            </div>
+
+        </div>
+
+        <div>
+        <Link to='/'>Go to App</Link>
+        </div>
+
+        <div className='addItem'>
+            <div>
+            <label>Name:</label>
+            <input type='text' value={name} onChange={inputName}/>
+            </div>
+            <div>{printOptionsforUpdate()}</div>
+            <div>
+            <label>Description:</label>
+            <input type='text' value={des} onChange={inputDes}/>
+            </div>
+            <div>
+            <label>Price:</label>
+            <input type='text' value={price} onChange={inputPrice}/>
+            </div>
+            <div>
+            <label>Date:</label>
+            <input type='text' value={date} onChange={inputDate}/>
+            </div>
+            <div>  
+            <label>Quantity:</label>
+            <input type='text' value={quantity} onChange={inputQuan}/>
+            </div>
+            <button onClick={addItem}>Add item</button>
+        </div>
+        </div>
+    )
+}

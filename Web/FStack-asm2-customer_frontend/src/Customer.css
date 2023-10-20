@@ -1,0 +1,205 @@
+/* Customer page */
+.tab {
+    width: auto;
+    border: 1px solid;
+    border-color: black;
+    padding: 16px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 8px;
+    margin: auto;
+}
+.info {
+    text-align: center;
+    border: 1px solid;
+    border-radius: 10px;
+    padding: 3%;
+}
+.display-container {
+    display: flex;
+    flex-direction: row;
+}
+.display {
+    width: 70%;
+    float: right;
+}
+.select {
+    width: 30%;
+}
+.image {
+    width: 100%;
+    max-height: 250px;
+    border: 1px solid;
+    border-radius: 10px;
+}
+.order {
+    margin: 8px;
+    padding: 5px;
+    border: 1px solid;
+    width: fit-content;
+}
+.input-pro {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #333;
+    background-color: #f1f1f1;
+}
+.bold {
+    font-weight: bold;
+}
+
+/* Login & Signup */
+.container{
+    display: flex;
+    flex-direction: column;
+    padding-top: 5%;
+}
+.onSubmit{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.input{
+    width: 30%;
+    margin: 1%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #333;
+    background-color: #f1f1f1;
+}
+.text{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 5%;
+}
+
+/* header */
+.App {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.App-header {
+    align-items: center;
+    margin: 0px;
+    height: 7vh;
+    max-height: 7vh;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    background-image: linear-gradient(to right, rgb(192, 255, 231), rgb(216, 216, 250), rgb(192, 255, 192));
+    position: sticky;
+    font-size: 13.5px;
+}
+
+.App-logo {
+    height: 100%;
+    max-height: 10vh;
+    margin: 0 10px;
+    justify-self: center;
+}
+
+.App-header-nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-direction: row;
+    width: 100%;
+    padding: 8px;
+}
+
+.button {
+    border: none;
+    border-radius: 5px;
+    width: 120px;
+    height: 100%;
+    padding: 0px;
+    margin: 0 5px;
+    background-color: aquamarine;
+    color: black;
+    font-family: inherit;
+    font-weight: bold;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.button-pro {
+    border: none;
+    border-radius: 5px;
+    width: 120px;
+    padding: 0px;
+    margin: 0 5px;
+    background-color: aquamarine;
+    color: black;
+    font-family: inherit;
+    font-weight: bold;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.button:hover {
+    cursor: pointer;
+}
+
+.button:active {
+    background-color: rgb(199, 255, 237);
+    cursor: pointer;
+    box-shadow: none;
+}
+
+.App-footer {
+    display: flex;
+    flex-direction: row;
+    margin: 10px 0 0 0;
+    height: 12vh;
+    max-height: 12vh;
+    background-image: linear-gradient(to right, rgb(192, 255, 231), rgb(216, 216, 250), rgb(192, 255, 192));
+    position: sticky;
+    bottom: 0;
+    font-size: 12px;
+    color: rgb(59, 59, 59);
+}
+
+.col-md-4-1 {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    width: 50vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.col-md-4-2 {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0 10px;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+h3 {
+    margin: 0;
+    padding: 0 1.5em;
+}
+
+.footer-item {
+    font-weight: 400;
+    margin: 0 1.5rem;
+    padding: 3px;
+}
+
+.copyright {
+    margin: 0.6rem 0;
+    font-weight: bold;
+}
